@@ -8,7 +8,6 @@ import ig from './assets/icons8-instagram-15.png';
 function App() {
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 }); // Set initial position beside the Yes button
   const [yesClicked, setYesClicked] = useState(false);
-  const [mouseReachedNo, setMouseReachedNo] = useState(false);
   const [tries, setTries] = useState(0);
 
   useEffect(() => {
@@ -28,13 +27,6 @@ function App() {
     const noButtonY = noButtonPosition.y;
     const distance = Math.sqrt((mouseX - noButtonX) ** 2 + (mouseY - noButtonY) ** 2);
 
-    // If the distance is less than a threshold, set mouseReachedNo to true
-    if (distance < 100) {
-      setMouseReachedNo(true);
-    } else {
-      setMouseReachedNo(false);
-    }
-
     // If the distance is less than a threshold, spawn the "No" button randomly
     if (distance < 100) {
       const randomX = Math.random() * window.innerWidth;
@@ -51,6 +43,7 @@ function App() {
   };
 
   const handleNoButtonClick = () => {
+    alert("Are you sure you want to say no? Think about it!");
   };
 
   return (
@@ -62,19 +55,21 @@ function App() {
         </a>
         <h2>{yesClicked ? "Okiee! Yayyy!" : "Will you be my valentine?"}</h2>
         <div className='card-body'>
-          {yesClicked ? null : <button className="btn btn-primary yes-btn" onClick={handleYesButtonClick}>Yes</button>}
-          <button
-            className='btn btn-primary no-btn'
-            style={{
-              position: 'absolute',
-              top: Math.min(noButtonPosition.y, window.innerHeight - 100), // Ensure the button doesn't exceed the viewport height
-              left: Math.min(noButtonPosition.x, window.innerWidth - 100), // Ensure the button doesn't exceed the viewport width
-              transition: 'top 0.2s, left 0.2s', // Apply transition effect to top and left properties
-            }}
-            onClick={handleNoButtonClick}
-          >
-            No
-          </button>
+          {!yesClicked && <button className="btn btn-primary yes-btn" onClick={handleYesButtonClick}>Yes</button>}
+          {yesClicked ? null :
+            <button
+              className='btn btn-primary no-btn'
+              style={{
+                position: 'absolute',
+                top: Math.min(noButtonPosition.y, window.innerHeight - 100), // Ensure the button doesn't exceed the viewport height
+                left: Math.min(noButtonPosition.x, window.innerWidth - 100), // Ensure the button doesn't exceed the viewport width
+                transition: 'top 0.2s, left 0.2s', // Apply transition effect to top and left properties
+              }}
+              onClick={handleNoButtonClick}
+            >
+              No
+            </button>
+          }
         </div>
       </div>
 

@@ -71,7 +71,6 @@ function App() {
               top: Math.min(noButtonPosition.y, window.innerHeight - 100), // Ensure the button doesn't exceed the viewport height
               left: Math.min(noButtonPosition.x, window.innerWidth - 100), // Ensure the button doesn't exceed the viewport width
               transition: 'top 0.2s, left 0.2s', // Apply transition effect to top and left properties
-              pointerEvents: 'none' // Disable pointer events on the button
             }}
             onClick={handleNoButtonClick}
           >

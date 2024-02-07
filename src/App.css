@@ -71,9 +71,11 @@ button {
   font-size: 16px;
   font-weight: 600;
 }
-
-
-
+button:hover {
+  background-color: #232946;
+  transition: 0.3s;
+  color: #fffffe;
+}
 .card-body {
   display: flex;
   padding-left: 205px;

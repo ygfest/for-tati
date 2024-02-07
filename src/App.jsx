@@ -43,7 +43,6 @@ function App() {
   };
 
   const handleNoButtonClick = () => {
-    alert("Are you sure you want to say no? Think about it!");
   };
 
   return (
